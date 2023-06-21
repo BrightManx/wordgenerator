@@ -45,7 +45,7 @@ page = st.sidebar.selectbox('Generate new words or explore the datasets', ['Gene
 if page == 'Generator':
     st.title('AI Words Generator')
     st.write('''
-    This **Neural Network** has been trained on a dataset of words, has learned the realations between letters and is now able to generate similar words
+    This **Neural Network** has been trained on a dataset of words, learning the probability of each letter in a word given the three before and is now able to generate similar words.
     ''')
 
     model = st.radio('What model would you like to use?', models.keys())
