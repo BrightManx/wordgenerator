@@ -28,6 +28,12 @@ import streamlit as st
 from backend import generate_words, load_model 
 import numpy as np
 
+st.set_page_config(
+    page_title="Word Generator",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
+
 models = {
     'Italian': load_model('italian'),
     'Parolacce': load_model('parolacce'),
