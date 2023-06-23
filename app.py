@@ -30,7 +30,24 @@ if page == 'Generator':
 
     model = st.radio('What model would you like to use?', models.keys())
     n = st.slider('How many words would you like to generate?', 0, 50, 10)
-    generate = st.button('Generate')
+
+    generate = None
+    if model == 'Parolacce':
+        st.write("""
+        By using this AI model that generates swear words, insults, or potentially offensive content, you acknowledge and agree to the following:  
+        1. This AI model is intended for entertainment purposes only. It generates random and fictional content, including swear words, insults, or offensive language.
+        2. As a user, you are solely responsible for how you choose to use the generated content. You understand that any offensive or inappropriate use of the generated content is strictly prohibited. You must exercise caution and discretion when sharing or disseminating the output from this AI model.
+        3. It is important to understand that the generated content may not align with your personal morals, beliefs, or values. I, the creator of this model, do not endorse or promote any offensive or harmful content generated through its use.
+        4. I, the creator, shall not be held liable for any direct, indirect, incidental, special, or consequential damages arising out of or in connection with the use or misuse of the generated content.
+        """)
+        age = st.checkbox("""
+        I confirm to be at least 18 years old
+        """)
+        if age == True:
+            generate = st.button('Generate')
+
+    else:
+        generate = st.button('Generate')
 
     if generate:
         out = generate_words(models[model][0], models[model][1], n = n)
