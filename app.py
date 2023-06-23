@@ -10,11 +10,7 @@ hide_menu_style = """
 """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-st.set_page_config(
-    page_title="Word Generator",
-    layout="centered",
-    initial_sidebar_state="collapsed"
-)
+
 
 models = {
     'Italian': load_model('italian'),
