@@ -61,15 +61,19 @@ if page == 'Generator':
     if generate:
         out = generate_words(models[model][0], models[model][1], n = n)
         if model == 'Names': out = [name.capitalize() for name in out]
-        st.write(out)
-
+        
+        col1, col2 = st.columns(2)
+        
         st.write('''
-        Some of the generated words might be actual words.  
-        The words in the list below marked with "True" are present in the training dataset.
+        Some of the generated words might be actual words, those marked with "True" are present in the training dataset.
         ''')
+        
+        with col1:
+            st.write(out)
 
-        check = [f'{word}, {word in datasets[model]}' for word in out]
-        st.write(check)
+        with col2:
+            check = [word in datasets[model] for word in out]
+            st.write(check)
 
 if page == 'Explore the training dataset':
     st.title('Training Datasets')
