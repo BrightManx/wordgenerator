@@ -56,7 +56,7 @@ if page == 'Generator':
 
         st.write('''
         Some of the generated words might be actual words.  
-        The words in the list below marked with "True" are present in the training dataset of actual italian words.
+        The words in the list below marked with "True" are present in the training dataset.
         ''')
 
         check = [f'{word}, {word in datasets[model]}' for word in out]
