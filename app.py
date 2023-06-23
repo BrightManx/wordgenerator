@@ -33,15 +33,16 @@ page = st.sidebar.selectbox('Generate new words or explore the datasets', ['Gene
 if page == 'Generator':
     st.title('AI Words Generator')
     st.write('''
-    This **Neural Network** has been trained on a dataset of words, learning the probability of each letter in a word given the three before and is now able to generate similar words.
+    This **Neural Network** has been trained on a dataset of actual words, learning the complex patterns and relations among letters and is now able to generate **similar words**.
     ''')
 
-    model = st.radio('What model would you like to use?', models.keys())
-    n = st.slider('How many words would you like to generate?', 0, 50, 10)
+    model = st.radio('What **model** would you like to use?', models.keys())
+    n = st.slider('How **many** words would you like to generate?', 0, 50, 10)
 
     generate = None
     if model == 'Parolacce':
         st.write("""
+        #### !! Disclaimer
         By using this AI model that generates swear words, insults, or potentially offensive content, you acknowledge and agree to the following:  
         1. This AI model is intended for entertainment purposes only. It generates random and fictional content, including swear words, insults, or offensive language.
         2. As a user, you are solely responsible for how you choose to use the generated content. You understand that any offensive or inappropriate use of the generated content is strictly prohibited. You must exercise caution and discretion when sharing or disseminating the output from this AI model.
