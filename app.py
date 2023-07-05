@@ -18,13 +18,13 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 models = {
     'Italian': load_model('italian'),
-    'Parolacce': load_model('parolacce'),
+#    'Parolacce': load_model('parolacce'),
     'Names' : load_model('names')
 }
 
 datasets = {
     'Italian': open('italian.txt').read().splitlines(),
-    'Parolacce': open('parolacce.txt').read().splitlines(),
+#    'Parolacce': open('parolacce.txt').read().splitlines(),
     'Names': open('names.txt').read().splitlines()
 }
 
