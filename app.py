@@ -28,7 +28,7 @@ datasets = {
     'Names': open('names.txt').read().splitlines()
 }
 
-page = st.sidebar.selectbox('Generate new words or explore the datasets', ['Generator', 'Explore the training dataset'])
+page = st.sidebar.selectbox('Generate new words or explore the datasets', ['Generator', 'Explore the training dataset', 'Rate the words'])
 
 ######################################################################################################################################################################################
 if page == 'Generator':
