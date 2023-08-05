@@ -1,6 +1,7 @@
 import streamlit as st
 from backend import generate_words, load_model 
 import numpy as np
+import json
 
 st.set_page_config(
     page_title="Word Generator",
