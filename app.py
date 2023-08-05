@@ -30,6 +30,7 @@ datasets = {
 
 page = st.sidebar.selectbox('Generate new words or explore the datasets', ['Generator', 'Explore the training dataset'])
 
+######################################################################################################################################################################################
 if page == 'Generator':
     st.title('AI Words Generator')
     st.write('''
@@ -75,6 +76,7 @@ if page == 'Generator':
             check = [word in datasets[model] for word in out]
             st.write(check)
 
+###########################################################################################################################
 if page == 'Explore the training dataset':
     st.title('Training Datasets')
     st.write('In this section you can explore the datasets used to train the models.')
@@ -82,3 +84,61 @@ if page == 'Explore the training dataset':
     n = st.slider('How many words would you like to sample from the dataset?', 0, len(datasets[data]), 10)
     st.write(f'Here\'s a sample of {n} words from the "{data.lower()}" training dataset')
     st.write(np.random.choice(datasets[data], n))
+
+
+###########################################################################################################################
+if page =='Rate the words':
+
+    st.write('''
+1. **Random Jumble**: The generated word is a random mix of characters with no apparent meaning.  
+2. **Confused Nonsense**: The word seems to lack coherence and doesn't resemble any recognizable language.  
+3. **Semi-Sensical**: The word has some semblance of meaning or structure, but it's not entirely convincing as a genuine word.  
+4. **Almost Authentic**: The word closely resembles a real word and might be mistaken for one, but it's not quite there yet.  
+5. **Fluent Creation**: The word is a fluent and natural creation, indistinguishable from a genuine word in the language.  
+    ''')
+    
+    with open('rating_batch.json', 'r') as file:
+        rating_batch = json.load(file)
+    
+    ratings = [
+    '1 - Random Jumble',
+    '2 - Confused Nonsense',
+    '3 - Semi-Sensical',
+    '4 - Almost Authentic',
+    '5 - Fluent Creation'
+    ]
+    ratings = {int(rating[0]):rating for rating in ratings}
+
+    if "user" not in st.session_state:
+        with st.form("login"):
+            user = st.text_input("USERNAME:")
+            submit = st.form_submit_button("Login")
+            if submit:
+                st.write(f'Successfully logged in as **{user}**')
+                st.session_state["user"] = user
+        
+    if "user" in st.session_state:
+        user = st.session_state["user"]
+        st.write(f"<h2 style='text-align:center'> {user} is now rating </h2>", unsafe_allow_html=True)
+
+    if "current" not in st.session_state:
+        st.session_state["current"] = np.random.choice(list(rating_batch.keys()), 1).item()
+    
+    def change_current():
+        st.session_state["current"] = np.random.choice(list(rating_batch.keys()), 1).item()
+        return
+
+    st.button("Rate another word", on_click=change_current)
+    with st.form('Ratings', clear_on_submit=False):
+        current = st.session_state["current"]
+        st.write(f"<h1 style='text-align:center'> {current} </h1>", unsafe_allow_html=True)
+        rating = st.slider('Rate', min_value=1, max_value=5)
+        submit = st.form_submit_button('Submit!')
+    if submit:
+        with open('ratings.csv', 'a') as file:
+            try:
+                user = st.session_state["user"]
+            except:
+                user = ''
+            file.write(f'{current},{rating},{user}\n')
+        st.write(f"You\'ve successfully rated the word \"**{current}**\" as \"**{ratings[rating]}**\" [logged in as \"**{user}**\"]")
