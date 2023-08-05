@@ -142,5 +142,6 @@ if page =='Rate the words':
             except:
                 user = ''
             file.write(f'{current},{rating},{user}\n')
+        with open('ratings.csv', 'r') as file:
             st.write(file.read())
         st.write(f"You\'ve successfully rated the word \"**{current}**\" as \"**{ratings[rating]}**\" [logged in as \"**{user}**\"]")
