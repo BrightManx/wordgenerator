@@ -5,8 +5,14 @@ import json
 
 st.set_page_config(
     page_title="Word Generator",
+    page_icon="🤖",
     layout="centered",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://giacomo-ciro.github.io/',
+        'Report a bug': "https://giacomo-ciro.github.io/",
+        'About': "Word Generator!"
+    }
 )
 
 hide_menu_style = """
@@ -33,7 +39,7 @@ page = st.sidebar.selectbox('Generate new words or explore the datasets', ['Gene
 
 ######################################################################################################################################################################################
 if page == 'Generator':
-    st.title('AI Words Generator')
+    st.title('Words Generator')
     st.write('''
     This **Neural Network** has been trained on a dataset of actual words, learning the complex patterns and relations among letters and is now able to generate **similar words**.
     ''')
